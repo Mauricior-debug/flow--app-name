@@ -11,7 +11,7 @@ https://qr.expo.dev/eas-update?slug=exp&projectId=b7f37c24-6839-4d09-acb8-7434da
 Requires Expo Go that supports runtime `58.0.0`.
 
 ### Quick review path
-On Sign in, tap **Continue with demo profile** to land on matched scholarships with a filled student profile. Or create a new account and walk the full setup flow.
+On Sign in, tap **Continue with demo profile** to land on matched scholarships with a filled student profile and sample applications (submitted, in review, pending, accepted). Or create a new account and walk the full setup flow. Pull to refresh on Applications to advance statuses.
 
 ## Screens
 
