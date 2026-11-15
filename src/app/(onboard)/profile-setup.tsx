@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 
+import { PageHeader } from '../../components/PageHeader';
 import {
   Body,
   Button,
@@ -152,7 +153,14 @@ export default function ProfileSetupScreen() {
   }
 
   return (
-    <Screen safeTop={false}>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader
+        title="Profile setup"
+        backLabel={editing ? 'Profile' : 'Back'}
+        showBack={editing}
+        onBack={() => router.back()}
+      />
+      <Screen safeTop={false} style={{ flex: 1 }}>
       <Body style={{ marginBottom: space.xl }}>
         Add the details Scholarship Connect needs to judge which programmes you qualify for.
       </Body>
@@ -272,6 +280,7 @@ export default function ProfileSetupScreen() {
       {formError ? <Text style={styles.error}>{formError}</Text> : null}
       <Button label={editing ? 'Save changes' : 'Save and continue'} loading={loading} onPress={onSave} />
     </Screen>
+    </View>
   );
 }
 

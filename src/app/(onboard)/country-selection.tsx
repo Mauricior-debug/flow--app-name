@@ -11,6 +11,7 @@ import {
 import { SymbolView } from 'expo-symbols';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Body, Button, StateView } from '../../components/ui';
 import { STUDY_COUNTRIES } from '../../data/countries';
 import { useApp } from '../../store/AppContext';
@@ -60,6 +61,11 @@ export default function CountrySelectionScreen() {
   if (loadError) {
     return (
       <View style={styles.root}>
+        <PageHeader
+          title="Choose countries"
+          backLabel="Profile setup"
+          onBack={() => router.back()}
+        />
         <StateView
           tone="error"
           title="Couldn’t load countries"
@@ -73,6 +79,11 @@ export default function CountrySelectionScreen() {
 
   return (
     <View style={[styles.root, { paddingBottom: insets.bottom + 12 }]}>
+      <PageHeader
+        title="Choose countries"
+        backLabel="Profile setup"
+        onBack={() => router.back()}
+      />
       <View style={styles.header}>
         <Body>
           Choose where you want to study. Matching uses this list with your academic profile.
@@ -95,6 +106,7 @@ export default function CountrySelectionScreen() {
       <FlatList
         data={countries}
         keyExtractor={(item) => item.name}
+        style={{ flex: 1 }}
         contentContainerStyle={{ paddingHorizontal: 22, paddingBottom: 24 }}
         keyboardShouldPersistTaps="handled"
         renderItem={({ item }) => {
@@ -102,6 +114,9 @@ export default function CountrySelectionScreen() {
           return (
             <Pressable
               onPress={() => toggle(item.name)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: on }}
+              hitSlop={4}
               style={({ pressed }) => [styles.row, on && styles.rowOn, pressed && { opacity: 0.88 }]}
             >
               <Text style={styles.flag}>{item.flag}</Text>

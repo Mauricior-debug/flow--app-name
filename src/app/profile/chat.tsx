@@ -1,4 +1,4 @@
-import { Redirect } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import {
   FlatList,
@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { PageHeader } from '../../components/PageHeader';
 import { formatClock } from '../../lib/format';
 import { useApp } from '../../store/AppContext';
 import { colors, fonts, radius, space } from '../../theme';
@@ -38,8 +39,9 @@ export default function ChatScreen() {
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: colors.bg }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={88}
+      keyboardVerticalOffset={insets.top + 56}
     >
+      <PageHeader title="Chat" backLabel="Help" onBack={() => router.back()} />
       <FlatList
         ref={listRef}
         data={messages.length ? messages : [

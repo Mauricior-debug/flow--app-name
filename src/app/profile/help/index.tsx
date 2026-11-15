@@ -2,6 +2,7 @@ import { Redirect, router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 
+import { PageHeader } from '../../../components/PageHeader';
 import { Body, Screen } from '../../../components/ui';
 import { HELP_TOPICS } from '../../../data/help';
 import { useApp } from '../../../store/AppContext';
@@ -20,7 +21,9 @@ export default function HelpIndexScreen() {
   if (!user) return <Redirect href="/(auth)/sign-in" />;
 
   return (
-    <Screen safeTop={false}>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title="Help & support" backLabel="Profile" onBack={() => router.back()} />
+      <Screen safeTop={false} style={{ flex: 1 }}>
       <Body style={{ marginBottom: space.xl }}>
         Guidance for matching, applying, and managing your Scholarship Connect profile.
       </Body>
@@ -48,6 +51,7 @@ export default function HelpIndexScreen() {
         <Text style={styles.chatBody}>Chat with support about a country, deadline, or application.</Text>
       </Pressable>
     </Screen>
+    </View>
   );
 }
 

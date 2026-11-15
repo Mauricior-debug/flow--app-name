@@ -3,6 +3,7 @@ import { Image } from 'expo-image';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Button } from '../../components/ui';
 import { photos } from '../../data/photos';
 import { scholarshipById } from '../../data/scholarships';
@@ -24,6 +25,7 @@ export default function ApplicationConfirmScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title="Confirm applications" backLabel="Back" onBack={() => router.back()} />
       <ScrollView contentContainerStyle={{ padding: 22, paddingBottom: 140 }}>
         <Text style={styles.headline}>Ready to apply?</Text>
         <Text style={styles.lead}>

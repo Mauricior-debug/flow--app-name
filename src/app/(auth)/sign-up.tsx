@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, type TextInputProps } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Button, Headline, LogoMark, PasswordField, Screen } from '../../components/ui';
 import { isEmail } from '../../lib/format';
 import { useApp } from '../../store/AppContext';
@@ -67,7 +68,9 @@ export default function SignUpScreen() {
   }
 
   return (
-    <Screen safeTop={false}>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title="Sign up" backLabel="Back" onBack={() => router.back()} />
+      <Screen safeTop={false} style={{ flex: 1 }}>
       <View style={styles.hero}>
         <LogoMark size={56} />
         <Text style={styles.brand}>
@@ -119,6 +122,7 @@ export default function SignUpScreen() {
         </Link>
       </Text>
     </Screen>
+    </View>
   );
 }
 

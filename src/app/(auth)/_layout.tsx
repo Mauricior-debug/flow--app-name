@@ -6,17 +6,16 @@ export default function AuthLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShadowVisible: false,
-        headerTintColor: colors.navy,
-        headerTitleStyle: { fontFamily: 'Poppins_600SemiBold' },
+        headerShown: false,
         contentStyle: { backgroundColor: colors.bg },
       }}
     >
-      <Stack.Screen name="sign-up" options={{ title: 'Sign up' }} />
-      <Stack.Screen name="sign-in" options={{ title: 'Sign in' }} />
+      <Stack.Screen name="sign-up" />
+      <Stack.Screen name="sign-in" />
       <Stack.Screen
         name="password-reset"
         options={{
+          headerShown: true,
           presentation: 'formSheet',
           sheetAllowedDetents: [0.55, 0.8],
           sheetGrabberVisible: true,
