@@ -18,7 +18,7 @@ export default function ChangePasswordScreen() {
   if (!user) return <Redirect href="/(auth)/sign-in" />;
 
   return (
-    <Screen>
+    <Screen safeTop={false}>
       <Body style={{ marginBottom: space.xl }}>
         Choose a new password for {user.email}. You’ll stay signed in on this device.
       </Body>

@@ -59,7 +59,7 @@ export default function CountrySelectionScreen() {
 
   if (loadError) {
     return (
-      <View style={[styles.root, { paddingTop: insets.top }]}>
+      <View style={styles.root}>
         <StateView
           tone="error"
           title="Couldn’t load countries"

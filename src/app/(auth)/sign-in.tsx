@@ -45,7 +45,7 @@ export default function SignInScreen() {
   }
 
   return (
-    <Screen>
+    <Screen safeTop={false}>
       <View style={styles.hero}>
         <LogoMark size={56} />
         <Text style={styles.brand}>

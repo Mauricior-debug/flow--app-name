@@ -80,27 +80,33 @@ export default function RootLayout() {
               name="sheets/filter"
               options={{
                 presentation: 'formSheet',
-                sheetAllowedDetents: [0.45, 0.75],
+                sheetAllowedDetents: [0.55, 0.85],
                 sheetGrabberVisible: true,
+                sheetInitialDetentIndex: 0,
                 title: 'Filter & sort',
+                contentStyle: { backgroundColor: colors.bg },
               }}
             />
             <Stack.Screen
               name="sheets/nationality"
               options={{
                 presentation: 'formSheet',
-                sheetAllowedDetents: [0.55, 0.9],
+                sheetAllowedDetents: [0.7, 0.92],
                 sheetGrabberVisible: true,
+                sheetInitialDetentIndex: 0,
                 title: 'Nationality',
+                contentStyle: { backgroundColor: colors.bg },
               }}
             />
             <Stack.Screen
               name="sheets/notifications"
               options={{
                 presentation: 'formSheet',
-                sheetAllowedDetents: [0.4],
+                sheetAllowedDetents: [0.5, 0.7],
                 sheetGrabberVisible: true,
+                sheetInitialDetentIndex: 0,
                 title: 'Notifications',
+                contentStyle: { backgroundColor: colors.bg },
               }}
             />
           </Stack>

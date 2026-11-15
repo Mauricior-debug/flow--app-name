@@ -1,7 +1,8 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
+import { SheetShell } from '../../components/SheetShell';
 import { Body, Button, Field } from '../../components/ui';
 import { isEmail } from '../../lib/format';
 import { useApp } from '../../store/AppContext';
@@ -35,12 +36,11 @@ export default function PasswordResetSheet() {
   }
 
   return (
-    <View style={styles.root}>
+    <SheetShell scroll>
       <Body>
         We’ll prepare reset steps on this device. Email delivery is unavailable in this preview, so
         you’ll also see an in-app notification.
       </Body>
-      <View style={{ height: space.lg }} />
       <Field
         label="Email"
         value={email}
@@ -49,20 +49,16 @@ export default function PasswordResetSheet() {
         keyboardType="email-address"
         placeholder="you@email.com"
         error={error}
+        containerStyle={{ marginTop: space.lg }}
       />
       {message ? <Text style={styles.message}>{message}</Text> : null}
       <Button label="Send reset" loading={loading} onPress={onSubmit} />
       <Button label="Close" tone="ghost" onPress={() => router.back()} />
-    </View>
+    </SheetShell>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 22,
-    backgroundColor: colors.bg,
-  },
   message: {
     fontFamily: fonts.medium,
     fontSize: 14,

@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { SheetShell } from '../../components/SheetShell';
 import { Button, Chip } from '../../components/ui';
 import type { DegreeLevel, Funding, HomeFilters } from '../../data/types';
 import { useApp } from '../../store/AppContext';
@@ -24,7 +25,9 @@ export default function FilterSheet() {
   ];
 
   return (
-    <View style={styles.root}>
+    <SheetShell scroll>
+      <Text style={styles.lead}>Narrow the scholarships shown on Matches.</Text>
+
       <Text style={styles.label}>Degree level</Text>
       <View style={styles.wrap}>
         {degrees.map((item) => (
@@ -85,15 +88,17 @@ export default function FilterSheet() {
           setSort('match');
         }}
       />
-    </View>
+    </SheetShell>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.bg,
-    padding: 22,
+  lead: {
+    fontFamily: fonts.regular,
+    fontSize: 15,
+    lineHeight: 22,
+    color: colors.body,
+    marginBottom: space.md,
   },
   label: {
     fontFamily: fonts.semibold,

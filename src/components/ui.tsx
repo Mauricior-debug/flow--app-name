@@ -183,6 +183,8 @@ export function Screen({
   style,
   contentStyle,
   keyboard = true,
+  /** When false, skip top inset — use under a stack header so options stay visible. */
+  safeTop = true,
 }: {
   children: React.ReactNode;
   scroll?: boolean;
@@ -190,11 +192,20 @@ export function Screen({
   style?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
   keyboard?: boolean;
+  safeTop?: boolean;
 }) {
   const insets = useSafeAreaInsets();
+  const topPad = safeTop ? insets.top + space.lg : space.lg;
   if (!scroll) {
     return (
-      <View style={[styles.screen, { paddingTop: insets.top }, padded && styles.screenPad, style]}>
+      <View
+        style={[
+          styles.screen,
+          { paddingTop: safeTop ? insets.top : 0 },
+          padded && styles.screenPad,
+          style,
+        ]}
+      >
         {children}
       </View>
     );
@@ -203,7 +214,7 @@ export function Screen({
     <ScrollView
       style={[styles.screen, style]}
       contentContainerStyle={[
-        { paddingTop: insets.top + space.lg, paddingBottom: insets.bottom + 28 },
+        { paddingTop: topPad, paddingBottom: insets.bottom + 40 },
         padded && styles.screenPad,
         contentStyle,
       ]}

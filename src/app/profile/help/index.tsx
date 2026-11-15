@@ -20,7 +20,7 @@ export default function HelpIndexScreen() {
   if (!user) return <Redirect href="/(auth)/sign-in" />;
 
   return (
-    <Screen>
+    <Screen safeTop={false}>
       <Body style={{ marginBottom: space.xl }}>
         Guidance for matching, applying, and managing your Scholarship Connect profile.
       </Body>

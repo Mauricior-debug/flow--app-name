@@ -18,9 +18,11 @@ export default function AuthLayout() {
         name="password-reset"
         options={{
           presentation: 'formSheet',
-          sheetAllowedDetents: [0.5, 0.75],
+          sheetAllowedDetents: [0.55, 0.8],
           sheetGrabberVisible: true,
+          sheetInitialDetentIndex: 0,
           title: 'Forgot password',
+          contentStyle: { backgroundColor: colors.bg },
         }}
       />
     </Stack>

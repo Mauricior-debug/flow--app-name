@@ -1,6 +1,7 @@
 type Handler = (value: string) => void;
 
 let handler: Handler | null = null;
+let pending: string | null = null;
 
 export function listenForPick(next: Handler) {
   handler = next;
@@ -10,7 +11,16 @@ export function listenForPick(next: Handler) {
 }
 
 export function commitPick(value: string) {
-  const current = handler;
-  handler = null;
-  current?.(value);
+  pending = value;
+  handler?.(value);
+}
+
+export function consumePick() {
+  const value = pending;
+  pending = null;
+  return value;
+}
+
+export function peekPick() {
+  return pending;
 }

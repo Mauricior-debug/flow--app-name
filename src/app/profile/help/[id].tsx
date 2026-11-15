@@ -20,7 +20,7 @@ export default function HelpTopicScreen() {
   return (
     <>
       <Stack.Screen options={{ title: topic.title }} />
-      <Screen>
+      <Screen safeTop={false}>
         <Body style={{ marginBottom: space.xl }}>{topic.summary}</Body>
         {topic.body.map((block, index) => (
           <React.Fragment key={`${topic.id}-${index}`}>
