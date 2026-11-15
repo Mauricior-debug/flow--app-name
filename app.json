@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "Scholarship Connect",
+    "slug": "scholarship-connect",
+    "scheme": "scholarshipconnect",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "runtimeVersion": "58.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/b7f37c24-6839-4d09-acb8-7434da569f68"
+    },
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.scholarshipconnect.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.scholarshipconnect.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Scholarship Connect uses a photo you choose for your student profile."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "b7f37c24-6839-4d09-acb8-7434da569f68"
+      }
+    },
+    "owner": "naza123"
+  }
+}
