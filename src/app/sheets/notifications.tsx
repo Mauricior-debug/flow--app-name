@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { SheetShell } from '../../components/SheetShell';
 import { Button } from '../../components/ui';
 import { useApp } from '../../store/AppContext';
 import { colors, fonts, space } from '../../theme';
@@ -14,7 +15,8 @@ export default function NotificationsSheet() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <View style={styles.root}>
+    <SheetShell scroll>
+      <Text style={styles.lead}>Choose which in-app updates you want to see.</Text>
       <Toggle label="New scholarship matches" value={matches} onChange={setMatches} />
       <Toggle label="Application status updates" value={applications} onChange={setApplications} />
       <Toggle label="Support chat replies" value={messages} onChange={setMessages} />
@@ -31,7 +33,7 @@ export default function NotificationsSheet() {
           router.back();
         }}
       />
-    </View>
+    </SheetShell>
   );
 }
 
@@ -48,6 +50,8 @@ function Toggle({
     <Pressable
       onPress={() => onChange(!value)}
       style={({ pressed }) => [styles.row, pressed && { opacity: 0.85 }]}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: value }}
     >
       <Text style={styles.label}>{label}</Text>
       <View style={[styles.track, value && styles.trackOn]}>
@@ -58,11 +62,12 @@ function Toggle({
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.bg,
-    padding: 22,
-    gap: 8,
+  lead: {
+    fontFamily: fonts.regular,
+    fontSize: 15,
+    lineHeight: 22,
+    color: colors.body,
+    marginBottom: space.lg,
   },
   row: {
     minHeight: 56,

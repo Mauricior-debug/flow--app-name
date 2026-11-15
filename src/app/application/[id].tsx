@@ -1,8 +1,9 @@
 import * as Linking from 'expo-linking';
-import { Redirect, router, Stack, useLocalSearchParams } from 'expo-router';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Button, StateView, StatusPill } from '../../components/ui';
 import { scholarshipById } from '../../data/scholarships';
 import { ago, formatStamp } from '../../lib/format';
@@ -29,8 +30,12 @@ export default function ApplicationDetailsScreen() {
   if (!user) return <Redirect href="/(auth)/sign-in" />;
 
   return (
-    <>
-      <Stack.Screen options={{ title: scholarship?.name ?? 'Application details' }} />
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader
+        title={scholarship?.name ?? 'Application details'}
+        backLabel="Applications"
+        onBack={() => router.back()}
+      />
       {phase === 'loading' ? (
         <StateView tone="loading" title="Loading application" body="Opening the timeline for this file." />
       ) : null}
@@ -44,7 +49,7 @@ export default function ApplicationDetailsScreen() {
         />
       ) : null}
       {phase === 'ready' && application && scholarship ? (
-        <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: 22, paddingBottom: 48 }}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 22, paddingBottom: 48 }}>
           <View style={styles.header}>
             <Text style={styles.title}>{scholarship.name}</Text>
             <Text style={styles.meta}>
@@ -120,7 +125,7 @@ export default function ApplicationDetailsScreen() {
           ) : null}
         </ScrollView>
       ) : null}
-    </>
+    </View>
   );
 }
 

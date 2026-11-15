@@ -1,7 +1,8 @@
 import React from 'react';
-import { Redirect, Stack, useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
 
+import { PageHeader } from '../../../components/PageHeader';
 import { Body, Screen, StateView } from '../../../components/ui';
 import { HELP_TOPICS } from '../../../data/help';
 import { useApp } from '../../../store/AppContext';
@@ -14,13 +15,18 @@ export default function HelpTopicScreen() {
 
   if (!user) return <Redirect href="/(auth)/sign-in" />;
   if (!topic) {
-    return <StateView tone="error" title="Topic missing" body="This help article could not be found." />;
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.bg }}>
+        <PageHeader title="Help" backLabel="Help" onBack={() => router.back()} />
+        <StateView tone="error" title="Topic missing" body="This help article could not be found." />
+      </View>
+    );
   }
 
   return (
-    <>
-      <Stack.Screen options={{ title: topic.title }} />
-      <Screen>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title={topic.title} backLabel="Help" onBack={() => router.back()} />
+      <Screen safeTop={false} style={{ flex: 1 }}>
         <Body style={{ marginBottom: space.xl }}>{topic.summary}</Body>
         {topic.body.map((block, index) => (
           <React.Fragment key={`${topic.id}-${index}`}>
@@ -33,7 +39,7 @@ export default function HelpTopicScreen() {
           </React.Fragment>
         ))}
       </Screen>
-    </>
+    </View>
   );
 }
 

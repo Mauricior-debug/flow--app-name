@@ -1,11 +1,12 @@
 import * as DocumentPicker from 'expo-document-picker';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SymbolView } from 'expo-symbols';
 
+import { PageHeader } from '../../components/PageHeader';
 import {
   Body,
   Button,
@@ -16,9 +17,18 @@ import {
 } from '../../components/ui';
 import { aminaPhoto } from '../../data/photos';
 import { nid } from '../../lib/format';
-import { listenForPick } from '../../lib/picker';
+import { consumePick, listenForPick } from '../../lib/picker';
 import { useApp, type Academic } from '../../store/AppContext';
 import { colors, fonts, radius, space } from '../../theme';
+
+function applyPick(
+  value: string,
+  setNationality: (next: string) => void,
+  setDateOfBirth: (next: string) => void,
+) {
+  if (value.startsWith('nat:')) setNationality(value.slice(4));
+  if (value.startsWith('dob:')) setDateOfBirth(value.slice(4));
+}
 
 export default function ProfileSetupScreen() {
   const { user, saveProfile } = useApp();
@@ -47,11 +57,15 @@ export default function ProfileSetupScreen() {
   const [formError, setFormError] = useState('');
 
   useEffect(() => {
-    return listenForPick((value) => {
-      if (value.startsWith('nat:')) setNationality(value.slice(4));
-      if (value.startsWith('dob:')) setDateOfBirth(value.slice(4));
-    });
+    return listenForPick((value) => applyPick(value, setNationality, setDateOfBirth));
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      const value = consumePick();
+      if (value) applyPick(value, setNationality, setDateOfBirth);
+    }, []),
+  );
 
   async function pickPhoto() {
     setUploadError('');
@@ -139,7 +153,14 @@ export default function ProfileSetupScreen() {
   }
 
   return (
-    <Screen>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader
+        title="Profile setup"
+        backLabel={editing ? 'Profile' : 'Back'}
+        showBack={editing}
+        onBack={() => router.back()}
+      />
+      <Screen safeTop={false} style={{ flex: 1 }}>
       <Body style={{ marginBottom: space.xl }}>
         Add the details Scholarship Connect needs to judge which programmes you qualify for.
       </Body>
@@ -159,14 +180,18 @@ export default function ProfileSetupScreen() {
         value={dateOfBirth}
         placeholder="Select date"
         error={errors.dob}
-        onPress={() => router.push('/sheets/nationality?mode=dob')}
+        onPress={() =>
+          router.push({ pathname: '/sheets/nationality', params: { mode: 'dob' } })
+        }
       />
       <PressField
         label="Nationality"
         value={nationality}
         placeholder="Select nationality"
         error={errors.nat}
-        onPress={() => router.push('/sheets/nationality?mode=nationality')}
+        onPress={() =>
+          router.push({ pathname: '/sheets/nationality', params: { mode: 'nationality' } })
+        }
       />
       <Field
         label="Contact email"
@@ -255,6 +280,7 @@ export default function ProfileSetupScreen() {
       {formError ? <Text style={styles.error}>{formError}</Text> : null}
       <Button label={editing ? 'Save changes' : 'Save and continue'} loading={loading} onPress={onSave} />
     </Screen>
+    </View>
   );
 }
 

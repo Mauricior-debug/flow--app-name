@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Button, StatusPill } from '../../components/ui';
 import { scholarshipById } from '../../data/scholarships';
 import { useApp } from '../../store/AppContext';
@@ -57,6 +58,7 @@ export default function ApplicationProgressScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title="Application progress" showBack={false} />
       <ScrollView contentContainerStyle={{ padding: 22, paddingBottom: 140 }}>
         <Text style={styles.title}>{running ? 'Sending applications' : 'Submission finished'}</Text>
         <Text style={styles.sub}>

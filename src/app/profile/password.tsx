@@ -1,7 +1,8 @@
 import { Redirect, router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Body, Button, PasswordField, Screen } from '../../components/ui';
 import { useApp } from '../../store/AppContext';
 import { colors, fonts, space } from '../../theme';
@@ -18,7 +19,9 @@ export default function ChangePasswordScreen() {
   if (!user) return <Redirect href="/(auth)/sign-in" />;
 
   return (
-    <Screen>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title="Change password" backLabel="Profile" onBack={() => router.back()} />
+      <Screen safeTop={false} style={{ flex: 1 }}>
       <Body style={{ marginBottom: space.xl }}>
         Choose a new password for {user.email}. You’ll stay signed in on this device.
       </Body>
@@ -63,6 +66,7 @@ export default function ChangePasswordScreen() {
         }}
       />
     </Screen>
+    </View>
   );
 }
 

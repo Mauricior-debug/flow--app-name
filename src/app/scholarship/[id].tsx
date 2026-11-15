@@ -1,10 +1,11 @@
 import { Image } from 'expo-image';
 import * as Linking from 'expo-linking';
-import { Redirect, router, Stack, useLocalSearchParams } from 'expo-router';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Button, Chip, StateView } from '../../components/ui';
 import { photos } from '../../data/photos';
 import { scholarshipById } from '../../data/scholarships';
@@ -30,8 +31,12 @@ export default function ScholarshipDetailsScreen() {
   if (!user) return <Redirect href="/(auth)/sign-in" />;
 
   return (
-    <>
-      <Stack.Screen options={{ title: scholarship?.name ?? 'Scholarship details' }} />
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader
+        title={scholarship?.name ?? 'Scholarship details'}
+        backLabel="Matches"
+        onBack={() => router.back()}
+      />
       {phase === 'loading' ? (
         <StateView tone="loading" title="Loading details" body="Opening this scholarship." />
       ) : null}
@@ -45,7 +50,7 @@ export default function ScholarshipDetailsScreen() {
         />
       ) : null}
       {phase === 'ready' && scholarship ? (
-        <View style={{ flex: 1, backgroundColor: colors.bg }}>
+        <View style={{ flex: 1 }}>
           <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
             <Image
               source={photos[scholarship.hero ?? scholarship.image]}
@@ -91,7 +96,7 @@ export default function ScholarshipDetailsScreen() {
           </View>
         </View>
       ) : null}
-    </>
+    </View>
   );
 }
 

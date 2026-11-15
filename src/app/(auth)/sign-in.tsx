@@ -2,6 +2,7 @@ import { Link, router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { PageHeader } from '../../components/PageHeader';
 import { Body, Button, Field, Headline, LogoMark, PasswordField, Screen } from '../../components/ui';
 import { isEmail } from '../../lib/format';
 import { useApp } from '../../store/AppContext';
@@ -45,7 +46,9 @@ export default function SignInScreen() {
   }
 
   return (
-    <Screen>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      <PageHeader title="Sign in" backLabel="Back" onBack={() => router.back()} />
+      <Screen safeTop={false} style={{ flex: 1 }}>
       <View style={styles.hero}>
         <LogoMark size={56} />
         <Text style={styles.brand}>
@@ -106,6 +109,7 @@ export default function SignInScreen() {
         </Link>
       </Text>
     </Screen>
+    </View>
   );
 }
 

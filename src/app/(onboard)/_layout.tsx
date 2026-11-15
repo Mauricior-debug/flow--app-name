@@ -6,14 +6,12 @@ export default function OnboardLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShadowVisible: false,
-        headerTintColor: colors.navy,
-        headerTitleStyle: { fontFamily: 'Poppins_600SemiBold' },
+        headerShown: false,
         contentStyle: { backgroundColor: colors.bg },
       }}
     >
-      <Stack.Screen name="profile-setup" options={{ title: 'Profile setup' }} />
-      <Stack.Screen name="country-selection" options={{ title: 'Choose countries' }} />
+      <Stack.Screen name="profile-setup" />
+      <Stack.Screen name="country-selection" />
     </Stack>
   );
 }
