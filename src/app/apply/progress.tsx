@@ -90,7 +90,15 @@ export default function ApplicationProgressScreen() {
         <Button
           label="Done"
           disabled={running}
-          onPress={() => router.replace('/(tabs)/applications')}
+          onPress={() =>
+            router.replace({
+              pathname: '/apply/success',
+              params: {
+                count: String(summary?.submitted ?? 0),
+                failed: String(summary?.failed ?? 0),
+              },
+            })
+          }
         />
       </View>
     </View>

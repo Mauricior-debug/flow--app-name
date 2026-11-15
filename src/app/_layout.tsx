@@ -64,6 +64,10 @@ export default function RootLayout() {
               options={{ title: 'Application progress', headerBackVisible: false }}
             />
             <Stack.Screen
+              name="apply/success"
+              options={{ headerShown: false, animation: 'fade' }}
+            />
+            <Stack.Screen
               name="application/[id]"
               options={{ title: 'Application details' }}
             />

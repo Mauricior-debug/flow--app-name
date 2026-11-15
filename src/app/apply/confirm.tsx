@@ -1,8 +1,10 @@
 import { Redirect, router } from 'expo-router';
+import { Image } from 'expo-image';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button } from '../../components/ui';
+import { photos } from '../../data/photos';
 import { scholarshipById } from '../../data/scholarships';
 import { useApp } from '../../store/AppContext';
 import { colors, fonts, radius, space } from '../../theme';
@@ -23,13 +25,14 @@ export default function ApplicationConfirmScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <ScrollView contentContainerStyle={{ padding: 22, paddingBottom: 140 }}>
+        <Text style={styles.headline}>Ready to apply?</Text>
         <Text style={styles.lead}>
-          Ready to apply? Scholarship Connect will send the initial application using your saved
-          profile.
+          Scholarship Connect will send the initial application for each scholarship below using your
+          saved profile and academic details.
         </Text>
 
         <Text style={styles.section}>
-          {fresh.length} scholarship{fresh.length === 1 ? '' : 's'} to submit
+          {fresh.length} scholarship{fresh.length === 1 ? '' : 's'} selected
         </Text>
         {fresh.length === 0 ? (
           <Text style={styles.empty}>
@@ -38,11 +41,14 @@ export default function ApplicationConfirmScreen() {
         ) : (
           fresh.map((item) => (
             <View key={item.id} style={styles.card}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.meta}>
-                {item.institution} · {item.country}
-              </Text>
-              <Text style={styles.meta}>Deadline {item.deadlineLabel}</Text>
+              <Image source={photos[item.image]} style={styles.thumb} contentFit="cover" />
+              <View style={{ flex: 1 }}>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.meta}>
+                  {item.institution} · {item.country}
+                </Text>
+                <Text style={styles.meta}>Deadline {item.deadlineLabel}</Text>
+              </View>
             </View>
           ))
         )}
@@ -72,6 +78,12 @@ export default function ApplicationConfirmScreen() {
 }
 
 const styles = StyleSheet.create({
+  headline: {
+    fontFamily: fonts.bold,
+    fontSize: 28,
+    color: colors.navy,
+    marginBottom: space.sm,
+  },
   lead: {
     fontFamily: fonts.regular,
     fontSize: 15,
@@ -95,9 +107,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.line,
     borderRadius: radius.lg,
-    padding: space.lg,
+    padding: space.md,
     marginBottom: space.md,
     backgroundColor: colors.white,
+    flexDirection: 'row',
+    gap: 12,
+    alignItems: 'center',
+  },
+  thumb: {
+    width: 64,
+    height: 64,
+    borderRadius: radius.sm,
+    backgroundColor: colors.field,
   },
   name: {
     fontFamily: fonts.semibold,

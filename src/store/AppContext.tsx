@@ -83,6 +83,7 @@ type AppContextValue = {
     password: string;
   }) => Promise<{ ok: true } | { ok: false; error: string }>;
   openDemo: () => Promise<void>;
+  refreshApplicationStatuses: () => void;
   signOut: () => void;
   requestPasswordReset: (
     email: string,
@@ -331,11 +332,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const email = 'demo@scholarshipconnect.app';
     const passwordHash = await hashPassword('demo1234');
     let demo = users.find((item) => item.email === email);
+    const createdNew = !demo;
     if (!demo) {
       demo = {
         ...blankUser({
           id: nid('demo'),
-          name: 'Amina Okeke',
+          name: 'Amina Yusuf',
           email,
           passwordHash,
         }),
@@ -362,6 +364,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       setUsers((list) => [...list, demo!]);
     } else {
       updateUser(demo.id, {
+        name: demo.name || 'Amina Yusuf',
         passwordHash,
         dateOfBirth: demo.dateOfBirth || '12 Mar 2000',
         nationality: demo.nationality || 'Nigeria',
@@ -383,12 +386,146 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             : ['United Kingdom', 'Germany', 'Canada', 'United States', 'Australia', 'France'],
       });
     }
-    setSessionUserId(demo.id);
+
+    const demoId = demo.id;
+    const hasApps = applications.some((item) => item.userId === demoId);
+    if (createdNew || !hasApps) {
+      const now = new Date();
+      const seeds: Application[] = [
+        {
+          id: nid('app'),
+          userId: demoId,
+          scholarshipId: 'chevening',
+          status: 'submitted',
+          submittedAt: now.toISOString(),
+          updatedAt: now.toISOString(),
+          listDate: '15 Mar 2024',
+          timeline: makeTimeline('submitted', now),
+          messages: [
+            {
+              id: nid('msg'),
+              from: 'UK Government',
+              body: 'We received your initial application for Chevening Scholarship.',
+              at: now.toISOString(),
+            },
+          ],
+          order: Date.now() + 4,
+        },
+        {
+          id: nid('app'),
+          userId: demoId,
+          scholarshipId: 'daad',
+          status: 'in review',
+          submittedAt: now.toISOString(),
+          updatedAt: now.toISOString(),
+          listDate: '12 Mar 2024',
+          timeline: [
+            { title: 'Application submitted', at: formatStamp(now), state: 'done' },
+            { title: 'Under review', detail: 'Institution has your file', at: formatStamp(now), state: 'current' },
+            { title: 'Decision', state: 'upcoming' },
+          ],
+          messages: [
+            {
+              id: nid('msg'),
+              from: 'German Academic Exchange Service',
+              body: 'Your file is with the selection committee.',
+              at: now.toISOString(),
+            },
+          ],
+          order: Date.now() + 3,
+        },
+        {
+          id: nid('app'),
+          userId: demoId,
+          scholarshipId: 'australia-awards',
+          status: 'pending',
+          submittedAt: null,
+          updatedAt: now.toISOString(),
+          listDate: '10 Mar 2024',
+          timeline: makeTimeline('pending', now),
+          messages: [],
+          order: Date.now() + 2,
+        },
+        {
+          id: nid('app'),
+          userId: demoId,
+          scholarshipId: 'eiffel',
+          status: 'accepted',
+          submittedAt: now.toISOString(),
+          updatedAt: now.toISOString(),
+          listDate: '8 Mar 2024',
+          timeline: [
+            { title: 'Application submitted', at: formatStamp(now), state: 'done' },
+            { title: 'Under review', at: formatStamp(now), state: 'done' },
+            { title: 'Accepted', detail: 'Congratulations — the institution accepted your file.', at: formatStamp(now), state: 'current' },
+          ],
+          messages: [
+            {
+              id: nid('msg'),
+              from: 'French Government',
+              body: 'Your Eiffel Excellence application was accepted for the next step.',
+              at: now.toISOString(),
+            },
+          ],
+          order: Date.now() + 1,
+        },
+      ];
+      setApplications((list) => {
+        const withoutDemo = list.filter((item) => item.userId !== demoId);
+        return [...seeds, ...withoutDemo];
+      });
+    }
+
+    setSessionUserId(demoId);
     setConsentedState(true);
     setOnboardingDone(true);
-    pushNotice('Demo profile ready. Browse matches or apply to eligible scholarships.');
+    pushNotice('Demo profile ready with sample applications across every status.');
     hapticSuccess();
-  }, [pushNotice, updateUser, users]);
+  }, [applications, pushNotice, updateUser, users]);
+
+  const refreshApplicationStatuses = useCallback(() => {
+    if (!user) return;
+    setApplications((list) =>
+      list.map((item) => {
+        if (item.userId !== user.id) return item;
+        if (item.status === 'submitted') {
+          const stamp = new Date();
+          return {
+            ...item,
+            status: 'in review',
+            updatedAt: stamp.toISOString(),
+            timeline: [
+              { title: 'Application submitted', at: item.submittedAt ? formatStamp(new Date(item.submittedAt)) : undefined, state: 'done' },
+              { title: 'Under review', detail: 'Institution has your file', at: formatStamp(stamp), state: 'current' },
+              { title: 'Decision', state: 'upcoming' },
+            ],
+            messages: [
+              {
+                id: nid('msg'),
+                from: scholarshipById(item.scholarshipId)?.institution ?? 'Institution',
+                body: 'Your application moved into review.',
+                at: stamp.toISOString(),
+              },
+              ...item.messages,
+            ],
+          };
+        }
+        if (item.status === 'pending') {
+          const stamp = new Date();
+          return {
+            ...item,
+            status: 'submitted',
+            submittedAt: stamp.toISOString(),
+            updatedAt: stamp.toISOString(),
+            listDate: formatDay(stamp),
+            timeline: makeTimeline('submitted', stamp),
+          };
+        }
+        return item;
+      }),
+    );
+    pushNotice('Application statuses refreshed.');
+  }, [pushNotice, user]);
 
   const signOut = useCallback(() => {
     setSessionUserId(null);
@@ -700,6 +837,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       signUp,
       signIn,
       openDemo,
+      refreshApplicationStatuses,
       signOut,
       requestPasswordReset,
       changePassword,
@@ -741,6 +879,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       saveProfile,
       sendChat,
       openDemo,
+      refreshApplicationStatuses,
       signIn,
       signOut,
       signUp,

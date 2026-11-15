@@ -6,6 +6,7 @@ import {
   RefreshControl,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 import { SymbolView } from 'expo-symbols';
@@ -16,7 +17,7 @@ import { Button, StateView } from '../../components/ui';
 import type { Scholarship } from '../../data/types';
 import { onTabReselect } from '../../lib/tabs';
 import { useApp } from '../../store/AppContext';
-import { colors, fonts, space } from '../../theme';
+import { colors, fonts, radius, space } from '../../theme';
 
 export default function ScholarshipsScreen() {
   const insets = useSafeAreaInsets();
@@ -31,6 +32,7 @@ export default function ScholarshipsScreen() {
   const listRef = useRef<FlatList<Scholarship>>(null);
   const [phase, setPhase] = useState<'loading' | 'error' | 'ready'>('loading');
   const [matches, setMatches] = useState<Scholarship[]>([]);
+  const [query, setQuery] = useState('');
 
   const runMatch = useCallback(async () => {
     if (!user) return;
@@ -60,6 +62,14 @@ export default function ScholarshipsScreen() {
   }
 
   const countries = user.countryCodes.slice(0, 3).join(', ');
+  const visible = matches.filter((item) => {
+    const needle = query.trim().toLowerCase();
+    if (!needle) return true;
+    return [item.name, item.institution, item.country, item.requirement]
+      .join(' ')
+      .toLowerCase()
+      .includes(needle);
+  });
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
@@ -84,6 +94,19 @@ export default function ScholarshipsScreen() {
         </Pressable>
       </View>
 
+      {phase === 'ready' ? (
+        <View style={styles.search}>
+          <SymbolView name="magnifyingglass" tintColor={colors.muted} size={16} />
+          <TextInput
+            value={query}
+            onChangeText={setQuery}
+            placeholder="Search matched scholarships"
+            placeholderTextColor={colors.placeholder}
+            style={styles.searchInput}
+          />
+        </View>
+      ) : null}
+
       {phase === 'loading' ? (
         <StateView
           tone="loading"
@@ -105,9 +128,10 @@ export default function ScholarshipsScreen() {
       {phase === 'ready' ? (
         <FlatList
           ref={listRef}
-          data={matches}
+          data={visible}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ paddingHorizontal: 22, paddingBottom: 120 }}
+          keyboardShouldPersistTaps="handled"
           refreshControl={<RefreshControl refreshing={false} onRefresh={runMatch} tintColor={colors.blue} />}
           renderItem={({ item }) => (
             <ScholarshipCard
@@ -119,15 +143,21 @@ export default function ScholarshipsScreen() {
           )}
           ListEmptyComponent={
             <StateView
-              title="No matches yet"
-              body="Try more countries, update your degree details, or clear filters."
-              actionLabel="Edit countries"
-              onAction={() => router.push('/(onboard)/country-selection?mode=edit')}
+              title={query ? 'No scholarships match that search' : 'No matches yet'}
+              body={
+                query
+                  ? 'Clear the search or adjust filters.'
+                  : 'Try more countries, update your degree details, or clear filters.'
+              }
+              actionLabel={query ? undefined : 'Edit countries'}
+              onAction={query ? undefined : () => router.push('/(onboard)/country-selection?mode=edit')}
             />
           }
           ListHeaderComponent={
-            matches.length ? (
-              <Text style={styles.count}>{matches.length} opportunities</Text>
+            visible.length ? (
+              <Text style={styles.count}>
+                {visible.length} opportunit{visible.length === 1 ? 'y' : 'ies'}
+              </Text>
             ) : (
               <View />
             )
@@ -185,6 +215,26 @@ const styles = StyleSheet.create({
     minHeight: 44,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  search: {
+    marginHorizontal: 22,
+    marginBottom: space.md,
+    minHeight: 48,
+    borderRadius: radius.md,
+    backgroundColor: colors.field,
+    borderWidth: 1,
+    borderColor: colors.line,
+    paddingHorizontal: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  searchInput: {
+    flex: 1,
+    fontFamily: fonts.regular,
+    fontSize: 15,
+    color: colors.text,
+    paddingVertical: 12,
   },
   count: {
     fontFamily: fonts.medium,
