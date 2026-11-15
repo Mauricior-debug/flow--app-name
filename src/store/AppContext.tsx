@@ -82,6 +82,7 @@ type AppContextValue = {
     email: string;
     password: string;
   }) => Promise<{ ok: true } | { ok: false; error: string }>;
+  openDemo: () => Promise<void>;
   signOut: () => void;
   requestPasswordReset: (
     email: string,
@@ -325,6 +326,69 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     },
     [users],
   );
+
+  const openDemo = useCallback(async () => {
+    const email = 'demo@scholarshipconnect.app';
+    const passwordHash = await hashPassword('demo1234');
+    let demo = users.find((item) => item.email === email);
+    if (!demo) {
+      demo = {
+        ...blankUser({
+          id: nid('demo'),
+          name: 'Amina Okeke',
+          email,
+          passwordHash,
+        }),
+        photoUri: null,
+        dateOfBirth: '12 Mar 2000',
+        nationality: 'Nigeria',
+        contactEmail: email,
+        academics: [
+          {
+            id: nid('deg'),
+            degree: "BSc Computer Science",
+            institution: 'University of Lagos',
+            gpa: 'First class',
+            year: '2023',
+          },
+        ],
+        languages: 'English, Yoruba',
+        ielts: '7.5',
+        toefl: '',
+        sat: '',
+        countryCodes: ['United Kingdom', 'Germany', 'Canada', 'United States', 'Australia', 'France'],
+        savedIds: ['chevening', 'daad'],
+      };
+      setUsers((list) => [...list, demo!]);
+    } else {
+      updateUser(demo.id, {
+        passwordHash,
+        dateOfBirth: demo.dateOfBirth || '12 Mar 2000',
+        nationality: demo.nationality || 'Nigeria',
+        academics:
+          demo.academics[0]?.degree
+            ? demo.academics
+            : [
+                {
+                  id: nid('deg'),
+                  degree: "BSc Computer Science",
+                  institution: 'University of Lagos',
+                  gpa: 'First class',
+                  year: '2023',
+                },
+              ],
+        countryCodes:
+          demo.countryCodes.length > 0
+            ? demo.countryCodes
+            : ['United Kingdom', 'Germany', 'Canada', 'United States', 'Australia', 'France'],
+      });
+    }
+    setSessionUserId(demo.id);
+    setConsentedState(true);
+    setOnboardingDone(true);
+    pushNotice('Demo profile ready. Browse matches or apply to eligible scholarships.');
+    hapticSuccess();
+  }, [pushNotice, updateUser, users]);
 
   const signOut = useCallback(() => {
     setSessionUserId(null);
@@ -635,6 +699,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       completeOnboarding,
       signUp,
       signIn,
+      openDemo,
       signOut,
       requestPasswordReset,
       changePassword,
@@ -675,6 +740,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       saveCountries,
       saveProfile,
       sendChat,
+      openDemo,
       signIn,
       signOut,
       signUp,

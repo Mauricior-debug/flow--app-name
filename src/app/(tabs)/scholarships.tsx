@@ -69,8 +69,8 @@ export default function ScholarshipsScreen() {
           <Text style={styles.title}>Scholarships for you</Text>
           {phase === 'ready' && matches.length > 0 ? (
             <Text style={styles.sub}>
-              Matched in {countries}
-              {user.countryCodes.length > 3 ? ' +' : ''}
+              You’ve been matched with scholarships in {countries}
+              {user.countryCodes.length > 3 ? ' and more' : ''}. Ready to apply?
             </Text>
           ) : null}
         </View>

@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Easing, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BrandTitle, Button, LogoMark } from '../components/ui';
@@ -50,7 +50,7 @@ export default function SplashScreen() {
         return;
       }
       router.replace('/onboarding');
-    }, 1400);
+    }, 1500);
     return () => clearTimeout(timer);
   }, [bootError, onboardingDone, ready, user]);
 
@@ -88,8 +88,9 @@ export default function SplashScreen() {
           </View>
         ) : (
           <>
-            <Animated.View style={{ transform: [{ rotate }] }}>
-              <ActivityIndicator size="large" color={colors.blue} />
+            <Animated.View style={[styles.spinner, { transform: [{ rotate }] }]}>
+              <View style={styles.spinnerTrack} />
+              <View style={styles.spinnerArc} />
             </Animated.View>
             <Text style={styles.loading}>Finding your next opportunity...</Text>
             <Text style={styles.sub}>Your gateway to global education</Text>
@@ -119,6 +120,26 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 120,
     marginBottom: 8,
+  },
+  spinner: {
+    width: 44,
+    height: 44,
+    marginBottom: 4,
+  },
+  spinnerTrack: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: 22,
+    borderWidth: 3,
+    borderColor: colors.blueSoft,
+  },
+  spinnerArc: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: 22,
+    borderWidth: 3,
+    borderTopColor: colors.blue,
+    borderRightColor: colors.blue,
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
   },
   loading: {
     fontFamily: fonts.medium,

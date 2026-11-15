@@ -334,6 +334,7 @@ export function PasswordField(props: TextInputProps & { label?: string; error?: 
     <View style={styles.fieldWrap}>
       {props.label ? <Text style={styles.fieldLabel}>{props.label}</Text> : null}
       <View style={[styles.field, styles.passwordRow, props.error ? styles.fieldError : null]}>
+        <SymbolView name="lock.fill" tintColor={colors.muted} size={16} />
         <TextInput
           {...props}
           secureTextEntry={!visible}

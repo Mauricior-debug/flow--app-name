@@ -8,12 +8,18 @@ import { useApp } from '../../store/AppContext';
 import { colors, fonts, space } from '../../theme';
 
 export default function SignInScreen() {
-  const { signIn } = useApp();
+  const { signIn, openDemo } = useApp();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [demoLoading, setDemoLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState('');
+
+  function goHomeAfterAuth() {
+    // Fresh session user is read asynchronously via context; route by email path first.
+    router.replace('/(tabs)/scholarships');
+  }
 
   async function onSubmit() {
     const next: Record<string, string> = {};
@@ -30,7 +36,7 @@ export default function SignInScreen() {
         setFormError(result.error);
         return;
       }
-      router.replace('/(tabs)/scholarships');
+      goHomeAfterAuth();
     } catch {
       setFormError('Network error. Check your connection and try again.');
     } finally {
@@ -41,8 +47,11 @@ export default function SignInScreen() {
   return (
     <Screen>
       <View style={styles.hero}>
-        <LogoMark size={64} />
-        <Headline style={{ marginTop: space.lg }}>Welcome back</Headline>
+        <LogoMark size={56} />
+        <Text style={styles.brand}>
+          Scholarship <Text style={{ color: colors.green }}>Connect</Text>
+        </Text>
+        <Headline style={{ marginTop: space.xl, textAlign: 'center' }}>Welcome back</Headline>
         <Body style={{ marginTop: space.sm, textAlign: 'center' }}>
           Sign in to continue matching and tracking applications.
         </Body>
@@ -72,6 +81,24 @@ export default function SignInScreen() {
       {formError ? <Text style={styles.error}>{formError}</Text> : null}
 
       <Button label="Sign in" loading={loading} onPress={onSubmit} />
+      <Button
+        label="Continue with demo profile"
+        tone="secondary"
+        loading={demoLoading}
+        style={{ marginTop: space.md }}
+        onPress={async () => {
+          setDemoLoading(true);
+          setFormError('');
+          try {
+            await openDemo();
+            router.replace('/(tabs)/scholarships');
+          } catch {
+            setFormError('Could not open the demo profile.');
+          } finally {
+            setDemoLoading(false);
+          }
+        }}
+      />
       <Text style={styles.footer}>
         New here?{' '}
         <Link href="/(auth)/sign-up" style={styles.link}>
@@ -86,6 +113,12 @@ const styles = StyleSheet.create({
   hero: {
     alignItems: 'center',
     marginBottom: space.xxl,
+  },
+  brand: {
+    marginTop: space.md,
+    fontFamily: fonts.bold,
+    fontSize: 18,
+    color: colors.navy,
   },
   forgot: {
     alignSelf: 'flex-end',

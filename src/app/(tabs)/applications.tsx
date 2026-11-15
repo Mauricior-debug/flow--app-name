@@ -1,6 +1,6 @@
 import { Redirect, router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ApplicationRow } from '../../components/ApplicationRow';
@@ -16,6 +16,8 @@ export default function ApplicationsScreen() {
   const { user, applications, appFilter, setAppFilter } = useApp();
   const listRef = useRef<FlatList<Application>>(null);
   const [phase, setPhase] = useState<'loading' | 'error' | 'ready'>('loading');
+  const [refreshing, setRefreshing] = useState(false);
+  const [loadToken, setLoadToken] = useState(0);
 
   useEffect(() => {
     let alive = true;
@@ -23,12 +25,13 @@ export default function ApplicationsScreen() {
     const timer = setTimeout(() => {
       if (!alive) return;
       setPhase('ready');
+      setRefreshing(false);
     }, 450);
     return () => {
       alive = false;
       clearTimeout(timer);
     };
-  }, [applications.length]);
+  }, [applications.length, loadToken]);
 
   useEffect(() => {
     return onTabReselect('applications', () => {
@@ -85,7 +88,7 @@ export default function ApplicationsScreen() {
           title="Couldn’t load applications"
           body="Something went wrong while reading your applications."
           actionLabel="Retry"
-          onAction={() => setPhase('ready')}
+          onAction={() => setLoadToken((value) => value + 1)}
         />
       ) : null}
 
@@ -95,6 +98,16 @@ export default function ApplicationsScreen() {
           data={filtered}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 40 }}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              tintColor={colors.blue}
+              onRefresh={() => {
+                setRefreshing(true);
+                setLoadToken((value) => value + 1);
+              }}
+            />
+          }
           renderItem={({ item }) => (
             <ApplicationRow
               application={item}
