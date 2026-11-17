@@ -3,51 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumen Drift | A Focus Ritual in Motion</title>
-  <meta name="description" content="Discover the planned Lumen Drift build: a React Native focus and reflection studio where timer rituals, motion and streaks feel alive." />
-  <meta property="og:title" content="Lumen Drift | A Focus Ritual in Motion" />
-  <meta property="og:description" content="A React Native focus and reflection studio designed around real motion, meaningful streaks and a daily ritual that feels alive." />
+  <title>Lumen Drift: A Focus Studio Built Right</title>
+  <meta
+    name="description"
+    content="Explore the focused React Native build for Lumen Drift: a four-screen timer with a breathing orb, real haptics, and no unnecessary extras."
+  />
+  <meta property="og:title" content="Lumen Drift: A Focus Studio Built Right" />
+  <meta
+    property="og:description"
+    content="A focused React Native build for Lumen Drift, shaped around one timer, one breathing orb, and four intentional screens."
+  />
   <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+    rel="stylesheet"
+  />
 
-  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              bg: "#050505",
-              bg2: "#0c0c0c",
-              text: "#ffffff",
-              muted: "#a3a3a3",
-              accent: "#f97316",
-              cta: "#f97316",
-              accentHover: "#fb923c",
-              ctaHover: "#ea580c"
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                bg: "#050505",
+                bg2: "#0c0c0c",
+                text: "#ffffff",
+                muted: "#a3a3a3",
+                accent: "#f97316",
+                accentHover: "#fb923c",
+                cta: "#f97316",
+                ctaHover: "#ea580c"
+              }
+            },
+            fontFamily: {
+              display: ["Fraunces", "serif"],
+              body: ["DM Sans", "sans-serif"]
             }
-          },
-          fontFamily: {
-            display: ["Fraunces", "serif"],
-            body: ["DM Sans", "sans-serif"]
           }
         }
       }
     };
   </script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    .orb-glow {
-      background: radial-gradient(circle, rgba(249, 115, 22, 0.16) 0%, rgba(249, 115, 22, 0.05) 34%, transparent 70%);
+    [data-wren-hero-media] {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 52%, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0.09) 11%, transparent 27%),
+        radial-gradient(circle at 50% 52%, #050505 0 7%, transparent 7.5%),
+        linear-gradient(125deg, #080808 0%, #12100d 52%, #070707 100%);
     }
-    .quiet-line {
-      background: linear-gradient(90deg, transparent, rgba(249,115,22,0.75), transparent);
+    [data-wren-hero-media]::before {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 90px rgba(249, 115, 22, 0.08);
+    }
+    [data-wren-hero-media]::after {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      top: 33%;
+      left: 68%;
+      border-radius: 9999px;
+      background: #f97316;
+      box-shadow: 0 0 20px 5px rgba(249, 115, 22, 0.45);
+    }
+    summary::-webkit-details-marker {
+      display: none;
     }
   </style>
-<style id="wren-tailwind-polish">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          bg: "#050505",
+          bg2: "#0c0c0c",
+          text: "#ffffff",
+          muted: "#a3a3a3",
+          accent: "#f97316",
+          cta: "#f97316"
+        }
+      },
+      fontFamily: {
+        display: ["Fraunces", "Georgia", "serif"],
+        sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"]
+      }
+    }
+  }
+};
+</script><style id="wren-tailwind-polish">
 :root{
   --wren-bg:#050505;
   --wren-bg2:#0c0c0c;
@@ -89,297 +145,344 @@ html.wren-js .wren-reveal.is-in{opacity:1;transform:none}
 </style></head>
 
 <body class="bg-brand-bg font-body text-brand-text antialiased">
-  <div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
-    <div class="orb-glow absolute left-1/2 top-[-20rem] h-[48rem] w-[48rem] -translate-x-1/2 rounded-full blur-3xl"></div>
-    <div class="absolute inset-x-0 top-0 h-px bg-white/10"></div>
-  </div>
-
-  <header class="relative z-10">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
-      <a href="#hero" class="flex items-baseline gap-3 text-sm font-semibold tracking-wide text-brand-text" aria-label="App name home">
-        <span>APP NAME</span>
-        <span class="hidden h-4 w-px bg-white/20 sm:block"></span>
-        <span class="hidden text-xs font-medium uppercase tracking-[0.18em] text-brand-muted sm:block">Lumen Drift</span>
+  <div class="min-h-screen overflow-hidden">
+    <header class="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
+      <a href="#hero" class="text-sm font-bold tracking-[0.18em] text-brand-text" aria-label="Lumen Drift home">
+        LUMEN DRIFT
       </a>
-
       <a
-        href="https://cal.com/mauricio-gloria-gwovdb/30min"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="wren-primary-cta rounded-full bg-brand-cta px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
+        href="#enquiry"
+        class="text-sm font-medium text-brand-muted transition hover:text-brand-text"
       >
-        Plan the build
+        Build brief
       </a>
-    </div>
-  </header>
+    </header>
 
-  <main class="relative z-10">
-    <section id="hero" class="px-5 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28 wren-reveal">
-      <div class="mx-auto max-w-2xl text-center">
-        <p class="mb-6 text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">In development · A clearer first light</p>
+    <main>
+      <section id="hero" class="relative px-5 pb-14 pt-16 sm:px-8 sm:pb-20 sm:pt-24 lg:pt-28 wren-reveal">
+        <div class="pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-brand-accent/10 blur-[130px]"></div>
 
-        <h1 class="font-display text-5xl leading-[0.98] tracking-[-0.045em] text-brand-text sm:text-7xl">
-          Give Lumen Drift a launch that moves.
-        </h1>
+        <div class="relative mx-auto max-w-2xl text-center">
+          <p class="mb-7 text-xs font-bold tracking-[0.2em] text-brand-accent">
+            A FOCUSED REACT NATIVE BUILD
+          </p>
 
-        <p class="mx-auto mt-7 max-w-xl text-lg leading-8 text-brand-muted sm:text-xl">
-          A React Native focus and reflection studio where a 25-minute ritual breathes, resolves in light, and gives people a reason to return tomorrow.
-        </p>
+          <h1 class="font-display text-5xl leading-[0.98] tracking-[-0.055em] text-brand-text sm:text-6xl lg:text-7xl">
+            Give focus a calmer place to land.
+          </h1>
 
-        <div class="mt-10">
-          <a
-            href="https://cal.com/mauricio-gloria-gwovdb/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="wren-primary-cta inline-flex items-center justify-center rounded-full bg-brand-cta px-6 py-3.5 text-base font-semibold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
-          >
-            Start the Lumen Drift build
-            <span class="ml-2" aria-hidden="true">↗</span>
-          </a>
+          <p class="mx-auto mt-7 max-w-xl text-base leading-7 text-brand-muted sm:text-lg sm:leading-8">
+            Lumen Drift is a deliberately small focus studio: one breathing light, one
+            25-minute timer, and four screens that do exactly what they need to do.
+          </p>
+
+          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              class="wren-primary-cta inline-flex items-center justify-center rounded-full bg-brand-cta px-7 py-3.5 text-sm font-bold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
+              href="https://cal.com/mauricio-gloria-gwovdb/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Talk through the build
+            </a>
+            <a
+              href="#focus"
+              class="inline-flex items-center justify-center rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-brand-text transition hover:border-white/35 hover:bg-white/5"
+            >
+              See the four-screen scope
+            </a>
+          </div>
+
+          <p class="mt-5 text-sm text-brand-muted">
+            No sign-in. No profiles. No extra screens.
+          </p>
         </div>
 
-        <p class="mt-5 text-sm text-brand-muted">No fake launch date. Just a focused path from resting frames to a working daily ritual.</p>
-      </div>
-
-      <div class="mx-auto mt-16 max-w-6xl sm:mt-20">
         <div
           data-wren-hero-media
-          class="aspect-[21/9] w-full rounded-[2rem] border border-white/10 bg-brand-bg2 shadow-[0_0_80px_rgba(249,115,22,0.05)]"
-          aria-label="Reserved visual space for Lumen Drift motion imagery"
-        ><img class="wren-hero-img h-full w-full object-cover" src="https://abseilingsurvey.s3.us-east-1.amazonaws.com/crmUploads/wren-prospect/2ebeba2f-e687-4bc0-bb4c-c1ab03bdd257-ai-generated-1794874224813.png" alt="App name hero" width="1536" height="1024" loading="eager" decoding="async" /></div>
-        <div class="mt-4 flex flex-col gap-2 text-xs text-brand-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Reserved for the moving Lumen Drift visual world, never a cropped phone screenshot.</p>
-          <p class="uppercase tracking-[0.16em] text-white/50">Home · Sky · Done</p>
-        </div>
-      </div>
-    </section>
+          aria-label="Reserved media space for the Lumen Drift motion preview"
+          class="mx-auto mt-16 aspect-[21/9] max-w-7xl rounded-[2rem] border border-white/10 sm:mt-20 sm:rounded-[2.5rem]"
+        ><img class="wren-hero-img h-full w-full object-cover" src="https://abseilingsurvey.s3.us-east-1.amazonaws.com/crmUploads/wren-prospect/215b7237-4c9f-49af-a31d-8906c47791e9-ai-generated-1794878799520.png" alt="App name hero" width="1536" height="1024" loading="eager" decoding="async" /></div>
+      </section>
 
-    <section id="problem" class="border-y border-white/10 bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
-      <div class="mx-auto max-w-6xl">
-        <div class="max-w-2xl">
-          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Why the front door matters</p>
-          <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.035em] sm:text-5xl">
-            A holding page cannot explain a product that is meant to feel alive.
-          </h2>
-          <p class="mt-6 text-lg leading-8 text-brand-muted">
-            Lumen Drift is not another static timer. Its value is in the breath of the orb, the release at the end of a session, the quiet Sky screen, and the personal rhythm people build over time.
-          </p>
-        </div>
-
-        <div class="mt-14 grid gap-10 border-t border-white/10 pt-10 md:grid-cols-[1fr_auto_1fr] md:items-start">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Today</p>
-            <p class="mt-4 max-w-sm font-display text-2xl leading-snug text-white/80">
-              No clear digital front door, and no way to make the motion, care, or habit behind Lumen Drift legible.
-            </p>
+      <section id="problem" class="border-y border-white/10 bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+        <div class="mx-auto max-w-6xl">
+          <div class="max-w-2xl">
+            <p class="text-xs font-bold tracking-[0.2em] text-brand-accent">THE GAP</p>
+            <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-5xl">
+              A vague front door makes a precise app feel less real.
+            </h2>
           </div>
 
-          <div class="hidden h-16 w-px bg-brand-accent/60 md:block" aria-hidden="true"></div>
-
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent">Tomorrow</p>
-            <p class="mt-4 max-w-sm font-display text-2xl leading-snug text-white">
-              One clear path to enquire, understand the ritual, and see why Lumen Drift deserves a place in someone’s day.
-            </p>
+          <div class="mt-14 border-t border-white/10">
+            <div class="grid gap-8 border-b border-white/10 py-8 md:grid-cols-[0.8fr_2fr] md:gap-14">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-muted">Today</p>
+              <p class="max-w-2xl text-xl leading-8 text-brand-text sm:text-2xl">
+                No clear digital front door. The visual idea, the interaction model, and the true
+                scope are still easy to blur together.
+              </p>
+            </div>
+            <div class="grid gap-8 border-b border-white/10 py-8 md:grid-cols-[0.8fr_2fr] md:gap-14">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-accent">Tomorrow</p>
+              <p class="max-w-2xl text-xl leading-8 text-brand-text sm:text-2xl">
+                One clear path to enquire, with the product expressed as it should be built:
+                quiet, contained, and unmistakably focused.
+              </p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="quiet-line mt-14 h-px w-full"></div>
+      <section id="about" class="px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+        <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
+            <p class="text-xs font-bold tracking-[0.2em] text-brand-accent">THE BUILD</p>
+            <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-5xl">
+              Keep the restraint. Build the motion properly.
+            </h2>
+          </div>
 
-        <p class="mt-7 max-w-3xl text-base leading-7 text-brand-muted">
-          The build should meet the scale of the idea: real Reanimated motion, purposeful screens beyond the happy path, and visual assets prepared independently for each key moment rather than borrowed from a single device mockup.
-        </p>
-      </div>
-    </section>
+          <div class="max-w-xl">
+            <p class="text-lg leading-8 text-brand-text">
+              Lumen Drift does not need a padded roadmap. It needs a polished first release that
+              respects the original direction: a deep night field, a soft gold orb, and a timer
+              people can actually use.
+            </p>
+            <p class="mt-6 text-base leading-7 text-brand-muted">
+              STREAMLYNCS LTD can shape the React Native implementation around that exact
+              constraint. The work stays focused on the interaction, timing, haptics, and
+              transitions that make this feel like a focus studio rather than another utility app.
+            </p>
 
-    <section id="about" class="px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
-      <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">The person on the other side of the screen</p>
-          <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.035em] sm:text-5xl">
-            Built for the person trying to return to themselves.
-          </h2>
+            <div class="mt-10 border-l border-brand-accent pl-5">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-muted">Delivery principle</p>
+              <p class="mt-3 font-display text-2xl leading-snug text-brand-text">
+                Build what was asked for, at the scale it was described.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="border-l border-white/10 pl-6 sm:pl-10">
-          <p class="font-display text-2xl leading-snug text-white sm:text-3xl">
-            Lumen Drift should make focus feel less like compliance and more like a small, repeatable act of care.
-          </p>
-          <p class="mt-7 text-lg leading-8 text-brand-muted">
-            The experience begins with a living orb and a simple 25-minute session. It makes room for a reflection and mood check-in, remembers the streak when someone signs in, and lets the ritual feel personal through haptics and a daily goal.
-          </p>
-          <p class="mt-6 text-lg leading-8 text-brand-muted">
-            STREAMLYNCS LTD is shaping the build around that intent: not only the polished moments, but the first launch, onboarding, loading, empty, and error states that decide whether an app feels dependable in real life.
-          </p>
+      <section id="focus" class="bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+        <div class="mx-auto max-w-6xl">
+          <div class="flex flex-col justify-between gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end">
+            <div class="max-w-2xl">
+              <p class="text-xs font-bold tracking-[0.2em] text-brand-accent">FOUR SCREENS. ONE EXPERIENCE.</p>
+              <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-5xl">
+                The scope is already clear.
+              </h2>
+            </div>
+            <div class="flex max-w-md flex-wrap gap-2">
+              <span class="rounded-full border border-white/15 px-4 py-2 text-sm text-brand-muted">React Native</span>
+              <span class="rounded-full border border-white/15 px-4 py-2 text-sm text-brand-muted">Reanimated</span>
+              <span class="rounded-full border border-white/15 px-4 py-2 text-sm text-brand-muted">Haptics</span>
+              <span class="rounded-full border border-white/15 px-4 py-2 text-sm text-brand-muted">25-minute sessions</span>
+            </div>
+          </div>
+
+          <div class="divide-y divide-white/10">
+            <article class="grid gap-5 py-9 md:grid-cols-[150px_1fr] md:gap-10 wren-reveal">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-accent">01 / Splash</p>
+              <div>
+                <h3 class="text-xl font-bold text-brand-text">A four-second arrival, without chrome.</h3>
+                <p class="mt-3 max-w-2xl leading-7 text-brand-muted">
+                  A soft gold orb with a dark core sits on the night field. The camera stays still.
+                  The orb breathes once, swelling, holding, then settling before easing into Home.
+                  Reanimated keeps the motion smooth. A still image is only the resting frame.
+                </p>
+              </div>
+            </article>
+
+            <article class="grid gap-5 py-9 md:grid-cols-[150px_1fr] md:gap-10 wren-reveal">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-accent">02 / Home</p>
+              <div>
+                <h3 class="text-xl font-bold text-brand-text">One timer, visible time left, real control.</h3>
+                <p class="mt-3 max-w-2xl leading-7 text-brand-muted">
+                  The orb keeps a slow breath behind a 25-minute timer. Start and pause work for
+                  real, the ring reflects time remaining, and a light haptic marks the start of
+                  each session.
+                </p>
+              </div>
+            </article>
+
+            <article class="grid gap-5 py-9 md:grid-cols-[150px_1fr] md:gap-10 wren-reveal">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-accent">03 / Done</p>
+              <div>
+                <h3 class="text-xl font-bold text-brand-text">A finish worth waiting for.</h3>
+                <p class="mt-3 max-w-2xl leading-7 text-brand-muted">
+                  When the session ends, the orb breaks into gold particles and a single comet
+                  crosses the night field. After roughly three seconds, the app resolves into a
+                  quiet completion state and a clear way back to Home.
+                </p>
+              </div>
+            </article>
+
+            <article class="grid gap-5 py-9 md:grid-cols-[150px_1fr] md:gap-10 wren-reveal">
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-accent">04 / Settings</p>
+              <div>
+                <h3 class="text-xl font-bold text-brand-text">Only the preferences that belong.</h3>
+                <p class="mt-3 max-w-2xl leading-7 text-brand-muted">
+                  Haptics on or off. A daily goal. Nothing else competing for attention, and no
+                  onboarding, profile, journal, or account layer added around the core ritual.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="focus" class="bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
-      <div class="mx-auto max-w-6xl">
-        <div class="max-w-2xl">
-          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Focus for the first release</p>
-          <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.035em] sm:text-5xl">
-            Fewer surfaces. More feeling in each one.
-          </h2>
-          <p class="mt-6 text-lg leading-8 text-brand-muted">
-            The important work is already clear. The next step is turning every resting frame into a coherent, resilient React Native experience.
-          </p>
-        </div>
+      <section id="cta" class="px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+        <div class="mx-auto max-w-6xl rounded-[2rem] border border-white/10 bg-brand-bg2 px-6 py-10 sm:px-10 sm:py-14 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div>
+            <p class="text-xs font-bold tracking-[0.2em] text-brand-accent">MAKE IT CONCRETE</p>
+            <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-5xl">
+              Ready to give Lumen Drift its real first release?
+            </h2>
+            <p class="mt-6 max-w-md leading-7 text-brand-muted">
+              Start with a short build conversation, or leave a project note below. The goal is a
+              clear route from the reference to a working focus experience.
+            </p>
+            <a
+              class="wren-primary-cta mt-8 inline-flex items-center justify-center rounded-full bg-brand-cta px-7 py-3.5 text-sm font-bold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg2"
+              href="https://cal.com/mauricio-gloria-gwovdb/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book a 30-minute build call
+            </a>
+          </div>
 
-        <div class="mt-12 flex flex-wrap gap-3" aria-label="Lumen Drift product focus areas">
-          <span class="rounded-full border border-brand-accent/45 bg-brand-accent/10 px-4 py-2 text-sm font-medium text-white">Splash with loading and error states</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Onboarding that explains the ritual</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Breathing 25-minute Home orb</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Reanimated motion system</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Sky comet after completion</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Done-state particle release</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Journal and mood reflection</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Sign-in saved streaks</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Settings for haptics and daily goal</span>
-          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Meaningful empty, loading and error screens</span>
-        </div>
-
-        <div class="mt-14 border-t border-white/10 pt-8">
-          <p class="max-w-4xl text-lg leading-8 text-white/85">
-            <span class="font-semibold text-brand-accent">Three key visuals need their own files:</span>
-            the soft gold Home orb with its dark core, the long-tailed gold comet against the night Sky, and the gold particle burst that leaves the orb at completion. They are distinct motion moments, not crops from one phone mockup.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="cta" class="px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Ready when the ritual is</p>
-        <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-6xl">
-          Start with what Lumen Drift needs to feel true.
-        </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-brand-muted">
-          Share the build context below, then choose a time for a focused conversation about scope, motion, and the path to launch.
-        </p>
-
-        <form id="build-enquiry" action="https://cal.com/mauricio-gloria-gwovdb/30min" class="mt-12 text-left">
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label for="name" class="mb-2 block text-sm font-medium text-white">Your name</label>
-              <input id="name" name="name" required autocomplete="name" placeholder="Name" class="w-full rounded-2xl border border-white/15 bg-brand-bg2 px-4 py-3.5 text-white placeholder:text-brand-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+          <form id="enquiry" action="#enquiry" method="post" class="mt-12 lg:mt-0">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="name" class="mb-2 block text-sm font-semibold text-brand-text">Your name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  class="w-full rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-brand-text outline-none transition placeholder:text-brand-muted/60 focus:border-brand-accent"
+                  placeholder="Name"
+                />
+              </div>
+              <div>
+                <label for="contact" class="mb-2 block text-sm font-semibold text-brand-text">Best contact</label>
+                <input
+                  id="contact"
+                  name="contact"
+                  type="text"
+                  autocomplete="email"
+                  required
+                  class="w-full rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-brand-text outline-none transition placeholder:text-brand-muted/60 focus:border-brand-accent"
+                  placeholder="Email or preferred contact"
+                />
+              </div>
             </div>
 
-            <div>
-              <label for="stage" class="mb-2 block text-sm font-medium text-white">Where is the build now?</label>
-              <select id="stage" name="stage" required class="w-full rounded-2xl border border-white/15 bg-brand-bg2 px-4 py-3.5 text-white focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
-                <option value="" selected disabled>Select a stage</option>
-                <option>Concept and visual direction</option>
-                <option>Resting screens are ready</option>
-                <option>React Native build is underway</option>
-                <option>Preparing for launch</option>
+            <div class="mt-5">
+              <label for="priority" class="mb-2 block text-sm font-semibold text-brand-text">What needs deciding?</label>
+              <select
+                id="priority"
+                name="priority"
+                class="w-full rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-brand-text outline-none transition focus:border-brand-accent"
+              >
+                <option>Motion and visual direction</option>
+                <option>React Native build scope</option>
+                <option>Timeline and delivery plan</option>
+                <option>Something else about Lumen Drift</option>
               </select>
             </div>
-          </div>
 
-          <div class="mt-5">
-            <label for="notes" class="mb-2 block text-sm font-medium text-white">What should feel unmistakable in Lumen Drift?</label>
-            <textarea id="notes" name="notes" rows="5" required placeholder="A few notes about the product, motion, screens, or launch goals." class="w-full resize-y rounded-2xl border border-white/15 bg-brand-bg2 px-4 py-3.5 text-white placeholder:text-brand-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"></textarea>
-          </div>
+            <div class="mt-5">
+              <label for="message" class="mb-2 block text-sm font-semibold text-brand-text">Project note</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                class="w-full resize-none rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-brand-text outline-none transition placeholder:text-brand-muted/60 focus:border-brand-accent"
+                placeholder="Tell us what you want to clarify."
+              ></textarea>
+            </div>
 
-          <div class="mt-7 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-            <p id="form-status" class="text-sm leading-6 text-brand-muted" aria-live="polite">
-              You will be taken to scheduling after submitting.
-            </p>
-            <button type="submit" class="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-brand-accent hover:text-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent">
-              Continue to scheduling
-              <span class="ml-1" aria-hidden="true">↗</span>
+            <button
+              type="submit"
+              class="mt-5 inline-flex w-full items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-bold text-black transition hover:bg-brand-accent"
+            >
+              Send project note
             </button>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq" class="border-t border-white/10 bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+        <div class="mx-auto max-w-4xl">
+          <div class="text-center">
+            <p class="text-xs font-bold tracking-[0.2em] text-brand-accent">FAQ</p>
+            <h2 class="mt-5 font-display text-4xl tracking-[-0.04em] sm:text-5xl">
+              A few useful boundaries.
+            </h2>
           </div>
-        </form>
 
-        <div class="mt-10">
-          <a
-            href="https://cal.com/mauricio-gloria-gwovdb/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="wren-primary-cta inline-flex rounded-full bg-brand-cta px-6 py-3.5 text-base font-semibold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
-          >
-            Or book the 30-minute conversation
-          </a>
+          <div class="mt-12 divide-y divide-white/10 border-y border-white/10">
+            <details class="group py-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-bold text-brand-text">
+                Will the splash and completion moments actually animate?
+                <span class="text-2xl font-normal text-brand-accent transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="max-w-3xl pt-4 leading-7 text-brand-muted">
+                Yes. The intended build uses Reanimated for the breathing orb on Splash and Home,
+                then the gold particle burst and comet sequence when a session completes.
+              </p>
+            </details>
+
+            <details class="group py-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-bold text-brand-text">
+                Is this a full productivity platform?
+                <span class="text-2xl font-normal text-brand-accent transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="max-w-3xl pt-4 leading-7 text-brand-muted">
+                No. Lumen Drift stays a focus timer. The first release is deliberately limited to
+                Splash, Home, Done, and Settings.
+              </p>
+            </details>
+
+            <details class="group py-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-bold text-brand-text">
+                Will start, pause, haptics, and the timer ring be functional?
+                <span class="text-2xl font-normal text-brand-accent transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="max-w-3xl pt-4 leading-7 text-brand-muted">
+                Yes. These are core interactions, not a static prototype. Home is designed around
+                a real 25-minute session, visible time remaining, start and pause control, and a
+                light start haptic when enabled.
+              </p>
+            </details>
+
+            <details class="group py-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-bold text-brand-text">
+                What is intentionally left out?
+                <span class="text-2xl font-normal text-brand-accent transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="max-w-3xl pt-4 leading-7 text-brand-muted">
+                Sign-in, onboarding, profiles, journals, and additional app screens stay out of
+                scope. Settings only handles haptics and the daily goal.
+              </p>
+            </details>
+          </div>
         </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 px-5 py-8 sm:px-8">
+      <div class="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-brand-muted sm:flex-row sm:items-center sm:justify-between">
+        <p>© Lumen Drift</p>
+        <p>Built around focus, not feature noise.</p>
       </div>
-    </section>
-
-    <section id="faq" class="border-t border-white/10 bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-24 wren-reveal">
-      <div class="mx-auto max-w-3xl">
-        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Questions worth answering early</p>
-        <h2 class="mt-5 font-display text-4xl tracking-[-0.035em] sm:text-5xl">Before the first frame moves.</h2>
-
-        <div class="mt-10 divide-y divide-white/10">
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-              Is Lumen Drift only a focus timer?
-              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
-            </summary>
-            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
-              No. The timer is the entry point. The planned product also supports reflection, mood tracking, saved streaks, and daily settings that help a person build a more intentional practice.
-            </p>
-          </details>
-
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-              Why does the motion need to be built, not simply demonstrated?
-              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
-            </summary>
-            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
-              The breathing orb, completion burst, and comet are not decoration. They mark progress and completion. Building them with Reanimated lets the app respond naturally across the full session rather than presenting a fixed illustration.
-            </p>
-          </details>
-
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-              Which states are included beyond the ideal flow?
-              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
-            </summary>
-            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
-              The planned scope accounts for splash loading and error states, onboarding, empty states, session states, sign-in, and settings. These are product screens, not afterthoughts.
-            </p>
-          </details>
-
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-              How should the Home, Sky, and Done visuals be supplied?
-              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
-            </summary>
-            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
-              Each should be prepared as its own source visual: the Home orb, the Sky comet, and the Done particle burst. That gives the motion system clean assets to animate rather than forcing one phone composition into three unrelated moments.
-            </p>
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="relative z-10 border-t border-white/10 px-5 py-8 sm:px-8">
-    <div class="mx-auto flex max-w-6xl flex-col gap-3 text-sm text-brand-muted sm:flex-row sm:items-center sm:justify-between">
-      <p><span class="font-semibold text-white">APP NAME</span> · Lumen Drift</p>
-      <p>Build direction by STREAMLYNCS LTD.</p>
-    </div>
-  </footer>
-
-  <script>
-    const enquiryForm = document.getElementById("build-enquiry");
-    const formStatus = document.getElementById("form-status");
-
-    enquiryForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      if (!enquiryForm.checkValidity()) {
-        enquiryForm.reportValidity();
-        return;
-      }
-
-      formStatus.textContent = "Opening scheduling so we can discuss your Lumen Drift build.";
-      window.open(enquiryForm.action, "_blank", "noopener,noreferrer");
-    });
-  </script>
+    </footer>
+  </div>
 
 <div class="wren-sticky-cta" role="region" aria-label="Primary call to action">
   <a href="https://cal.com/mauricio-gloria-gwovdb/30min" class="wren-primary-cta" target="_blank" rel="noopener noreferrer">Book a 15-min walkthrough</a>
