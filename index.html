@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumen Drift | A Focus Ritual in Motion</title>
+  <meta name="description" content="Discover the planned Lumen Drift build: a React Native focus and reflection studio where timer rituals, motion and streaks feel alive." />
+  <meta property="og:title" content="Lumen Drift | A Focus Ritual in Motion" />
+  <meta property="og:description" content="A React Native focus and reflection studio designed around real motion, meaningful streaks and a daily ritual that feels alive." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: "#050505",
+              bg2: "#0c0c0c",
+              text: "#ffffff",
+              muted: "#a3a3a3",
+              accent: "#f97316",
+              cta: "#f97316",
+              accentHover: "#fb923c",
+              ctaHover: "#ea580c"
+            }
+          },
+          fontFamily: {
+            display: ["Fraunces", "serif"],
+            body: ["DM Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    .orb-glow {
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.16) 0%, rgba(249, 115, 22, 0.05) 34%, transparent 70%);
+    }
+    .quiet-line {
+      background: linear-gradient(90deg, transparent, rgba(249,115,22,0.75), transparent);
+    }
+  </style>
+<style id="wren-tailwind-polish">
+:root{
+  --wren-bg:#050505;
+  --wren-bg2:#0c0c0c;
+  --wren-text:#ffffff;
+  --wren-muted:#a3a3a3;
+  --wren-accent:#f97316;
+  --wren-cta:#f97316;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--wren-bg);color:var(--wren-text);font-family:"DM Sans",ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.font-display,h1,h2{font-family:"Fraunces",Georgia,serif}
+/* Visible by default; .wren-js enables scroll reveal */
+.wren-reveal{opacity:1;transform:none}
+html.wren-js .wren-reveal:not(.is-in){opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+html.wren-js .wren-reveal.is-in{opacity:1;transform:none}
+.wren-sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:color-mix(in srgb, var(--wren-bg) 88%, transparent);
+  backdrop-filter:blur(14px);
+  border-top:1px solid color-mix(in srgb, var(--wren-accent) 35%, transparent);
+  display:none;
+}
+@media (max-width:768px){
+  .wren-sticky-cta{display:block}
+  body{padding-bottom:88px}
+}
+.wren-sticky-cta a{
+  display:block;text-align:center;background:var(--wren-cta);color:#0a0a0a;
+  font-weight:700;text-decoration:none;border-radius:999px;padding:14px 18px;
+}
+.wren-sticky-cta .wren-click-trigger{
+  display:block;text-align:center;font-size:12px;color:var(--wren-muted);margin-top:6px;
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .wren-reveal,html.wren-js .wren-reveal:not(.is-in){opacity:1;transform:none;transition:none}
+}
+</style></head>
+
+<body class="bg-brand-bg font-body text-brand-text antialiased">
+  <div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+    <div class="orb-glow absolute left-1/2 top-[-20rem] h-[48rem] w-[48rem] -translate-x-1/2 rounded-full blur-3xl"></div>
+    <div class="absolute inset-x-0 top-0 h-px bg-white/10"></div>
+  </div>
+
+  <header class="relative z-10">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
+      <a href="#hero" class="flex items-baseline gap-3 text-sm font-semibold tracking-wide text-brand-text" aria-label="App name home">
+        <span>APP NAME</span>
+        <span class="hidden h-4 w-px bg-white/20 sm:block"></span>
+        <span class="hidden text-xs font-medium uppercase tracking-[0.18em] text-brand-muted sm:block">Lumen Drift</span>
+      </a>
+
+      <a
+        href="https://cal.com/mauricio-gloria-gwovdb/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="wren-primary-cta rounded-full bg-brand-cta px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
+      >
+        Plan the build
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <section id="hero" class="px-5 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28 wren-reveal">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="mb-6 text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">In development · A clearer first light</p>
+
+        <h1 class="font-display text-5xl leading-[0.98] tracking-[-0.045em] text-brand-text sm:text-7xl">
+          Give Lumen Drift a launch that moves.
+        </h1>
+
+        <p class="mx-auto mt-7 max-w-xl text-lg leading-8 text-brand-muted sm:text-xl">
+          A React Native focus and reflection studio where a 25-minute ritual breathes, resolves in light, and gives people a reason to return tomorrow.
+        </p>
+
+        <div class="mt-10">
+          <a
+            href="https://cal.com/mauricio-gloria-gwovdb/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wren-primary-cta inline-flex items-center justify-center rounded-full bg-brand-cta px-6 py-3.5 text-base font-semibold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
+          >
+            Start the Lumen Drift build
+            <span class="ml-2" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <p class="mt-5 text-sm text-brand-muted">No fake launch date. Just a focused path from resting frames to a working daily ritual.</p>
+      </div>
+
+      <div class="mx-auto mt-16 max-w-6xl sm:mt-20">
+        <div
+          data-wren-hero-media
+          class="aspect-[21/9] w-full rounded-[2rem] border border-white/10 bg-brand-bg2 shadow-[0_0_80px_rgba(249,115,22,0.05)]"
+          aria-label="Reserved visual space for Lumen Drift motion imagery"
+        ><img class="wren-hero-img h-full w-full object-cover" src="https://abseilingsurvey.s3.us-east-1.amazonaws.com/crmUploads/wren-prospect/2ebeba2f-e687-4bc0-bb4c-c1ab03bdd257-ai-generated-1794874224813.png" alt="App name hero" width="1536" height="1024" loading="eager" decoding="async" /></div>
+        <div class="mt-4 flex flex-col gap-2 text-xs text-brand-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>Reserved for the moving Lumen Drift visual world, never a cropped phone screenshot.</p>
+          <p class="uppercase tracking-[0.16em] text-white/50">Home · Sky · Done</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="border-y border-white/10 bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+      <div class="mx-auto max-w-6xl">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Why the front door matters</p>
+          <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.035em] sm:text-5xl">
+            A holding page cannot explain a product that is meant to feel alive.
+          </h2>
+          <p class="mt-6 text-lg leading-8 text-brand-muted">
+            Lumen Drift is not another static timer. Its value is in the breath of the orb, the release at the end of a session, the quiet Sky screen, and the personal rhythm people build over time.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-10 border-t border-white/10 pt-10 md:grid-cols-[1fr_auto_1fr] md:items-start">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Today</p>
+            <p class="mt-4 max-w-sm font-display text-2xl leading-snug text-white/80">
+              No clear digital front door, and no way to make the motion, care, or habit behind Lumen Drift legible.
+            </p>
+          </div>
+
+          <div class="hidden h-16 w-px bg-brand-accent/60 md:block" aria-hidden="true"></div>
+
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent">Tomorrow</p>
+            <p class="mt-4 max-w-sm font-display text-2xl leading-snug text-white">
+              One clear path to enquire, understand the ritual, and see why Lumen Drift deserves a place in someone’s day.
+            </p>
+          </div>
+        </div>
+
+        <div class="quiet-line mt-14 h-px w-full"></div>
+
+        <p class="mt-7 max-w-3xl text-base leading-7 text-brand-muted">
+          The build should meet the scale of the idea: real Reanimated motion, purposeful screens beyond the happy path, and visual assets prepared independently for each key moment rather than borrowed from a single device mockup.
+        </p>
+      </div>
+    </section>
+
+    <section id="about" class="px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+      <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">The person on the other side of the screen</p>
+          <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.035em] sm:text-5xl">
+            Built for the person trying to return to themselves.
+          </h2>
+        </div>
+
+        <div class="border-l border-white/10 pl-6 sm:pl-10">
+          <p class="font-display text-2xl leading-snug text-white sm:text-3xl">
+            Lumen Drift should make focus feel less like compliance and more like a small, repeatable act of care.
+          </p>
+          <p class="mt-7 text-lg leading-8 text-brand-muted">
+            The experience begins with a living orb and a simple 25-minute session. It makes room for a reflection and mood check-in, remembers the streak when someone signs in, and lets the ritual feel personal through haptics and a daily goal.
+          </p>
+          <p class="mt-6 text-lg leading-8 text-brand-muted">
+            STREAMLYNCS LTD is shaping the build around that intent: not only the polished moments, but the first launch, onboarding, loading, empty, and error states that decide whether an app feels dependable in real life.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus" class="bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+      <div class="mx-auto max-w-6xl">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Focus for the first release</p>
+          <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.035em] sm:text-5xl">
+            Fewer surfaces. More feeling in each one.
+          </h2>
+          <p class="mt-6 text-lg leading-8 text-brand-muted">
+            The important work is already clear. The next step is turning every resting frame into a coherent, resilient React Native experience.
+          </p>
+        </div>
+
+        <div class="mt-12 flex flex-wrap gap-3" aria-label="Lumen Drift product focus areas">
+          <span class="rounded-full border border-brand-accent/45 bg-brand-accent/10 px-4 py-2 text-sm font-medium text-white">Splash with loading and error states</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Onboarding that explains the ritual</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Breathing 25-minute Home orb</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Reanimated motion system</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Sky comet after completion</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Done-state particle release</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Journal and mood reflection</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Sign-in saved streaks</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Settings for haptics and daily goal</span>
+          <span class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-brand-muted">Meaningful empty, loading and error screens</span>
+        </div>
+
+        <div class="mt-14 border-t border-white/10 pt-8">
+          <p class="max-w-4xl text-lg leading-8 text-white/85">
+            <span class="font-semibold text-brand-accent">Three key visuals need their own files:</span>
+            the soft gold Home orb with its dark core, the long-tailed gold comet against the night Sky, and the gold particle burst that leaves the orb at completion. They are distinct motion moments, not crops from one phone mockup.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="px-5 py-20 sm:px-8 sm:py-28 wren-reveal">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Ready when the ritual is</p>
+        <h2 class="mt-5 font-display text-4xl leading-tight tracking-[-0.04em] sm:text-6xl">
+          Start with what Lumen Drift needs to feel true.
+        </h2>
+        <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-brand-muted">
+          Share the build context below, then choose a time for a focused conversation about scope, motion, and the path to launch.
+        </p>
+
+        <form id="build-enquiry" action="https://cal.com/mauricio-gloria-gwovdb/30min" class="mt-12 text-left">
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-2 block text-sm font-medium text-white">Your name</label>
+              <input id="name" name="name" required autocomplete="name" placeholder="Name" class="w-full rounded-2xl border border-white/15 bg-brand-bg2 px-4 py-3.5 text-white placeholder:text-brand-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+            </div>
+
+            <div>
+              <label for="stage" class="mb-2 block text-sm font-medium text-white">Where is the build now?</label>
+              <select id="stage" name="stage" required class="w-full rounded-2xl border border-white/15 bg-brand-bg2 px-4 py-3.5 text-white focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent">
+                <option value="" selected disabled>Select a stage</option>
+                <option>Concept and visual direction</option>
+                <option>Resting screens are ready</option>
+                <option>React Native build is underway</option>
+                <option>Preparing for launch</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <label for="notes" class="mb-2 block text-sm font-medium text-white">What should feel unmistakable in Lumen Drift?</label>
+            <textarea id="notes" name="notes" rows="5" required placeholder="A few notes about the product, motion, screens, or launch goals." class="w-full resize-y rounded-2xl border border-white/15 bg-brand-bg2 px-4 py-3.5 text-white placeholder:text-brand-muted focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"></textarea>
+          </div>
+
+          <div class="mt-7 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <p id="form-status" class="text-sm leading-6 text-brand-muted" aria-live="polite">
+              You will be taken to scheduling after submitting.
+            </p>
+            <button type="submit" class="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-brand-accent hover:text-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent">
+              Continue to scheduling
+              <span class="ml-1" aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-10">
+          <a
+            href="https://cal.com/mauricio-gloria-gwovdb/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="wren-primary-cta inline-flex rounded-full bg-brand-cta px-6 py-3.5 text-base font-semibold text-black transition hover:bg-brand-ctaHover focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-bg"
+          >
+            Or book the 30-minute conversation
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="border-t border-white/10 bg-brand-bg2 px-5 py-20 sm:px-8 sm:py-24 wren-reveal">
+      <div class="mx-auto max-w-3xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-accent">Questions worth answering early</p>
+        <h2 class="mt-5 font-display text-4xl tracking-[-0.035em] sm:text-5xl">Before the first frame moves.</h2>
+
+        <div class="mt-10 divide-y divide-white/10">
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+              Is Lumen Drift only a focus timer?
+              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
+              No. The timer is the entry point. The planned product also supports reflection, mood tracking, saved streaks, and daily settings that help a person build a more intentional practice.
+            </p>
+          </details>
+
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+              Why does the motion need to be built, not simply demonstrated?
+              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
+              The breathing orb, completion burst, and comet are not decoration. They mark progress and completion. Building them with Reanimated lets the app respond naturally across the full session rather than presenting a fixed illustration.
+            </p>
+          </details>
+
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+              Which states are included beyond the ideal flow?
+              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
+              The planned scope accounts for splash loading and error states, onboarding, empty states, session states, sign-in, and settings. These are product screens, not afterthoughts.
+            </p>
+          </details>
+
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+              How should the Home, Sky, and Done visuals be supplied?
+              <span class="text-brand-accent transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-2xl pt-4 leading-7 text-brand-muted">
+              Each should be prepared as its own source visual: the Home orb, the Sky comet, and the Done particle burst. That gives the motion system clean assets to animate rather than forcing one phone composition into three unrelated moments.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative z-10 border-t border-white/10 px-5 py-8 sm:px-8">
+    <div class="mx-auto flex max-w-6xl flex-col gap-3 text-sm text-brand-muted sm:flex-row sm:items-center sm:justify-between">
+      <p><span class="font-semibold text-white">APP NAME</span> · Lumen Drift</p>
+      <p>Build direction by STREAMLYNCS LTD.</p>
+    </div>
+  </footer>
+
+  <script>
+    const enquiryForm = document.getElementById("build-enquiry");
+    const formStatus = document.getElementById("form-status");
+
+    enquiryForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (!enquiryForm.checkValidity()) {
+        enquiryForm.reportValidity();
+        return;
+      }
+
+      formStatus.textContent = "Opening scheduling so we can discuss your Lumen Drift build.";
+      window.open(enquiryForm.action, "_blank", "noopener,noreferrer");
+    });
+  </script>
+
+<div class="wren-sticky-cta" role="region" aria-label="Primary call to action">
+  <a href="https://cal.com/mauricio-gloria-gwovdb/30min" class="wren-primary-cta" target="_blank" rel="noopener noreferrer">Book a 15-min walkthrough</a>
+  <span class="wren-click-trigger">No commitment · Average reply under 24h</span>
+</div>
+<script id="wren-reveal-boot">
+(function(){
+  try {
+    document.documentElement.classList.add('wren-js');
+    var nodes = document.querySelectorAll('.wren-reveal');
+    if (!nodes.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      nodes.forEach(function(el){ el.classList.add('is-in'); });
+      return;
+    }
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach(function(el){ el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('is-in'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    nodes.forEach(function(el){ io.observe(el); });
+    // First paint safety: mark above-the-fold after a tick
+    requestAnimationFrame(function(){
+      nodes.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.92) el.classList.add('is-in');
+      });
+    });
+  } catch (e) {
+    try { document.querySelectorAll('.wren-reveal').forEach(function(el){ el.classList.add('is-in'); }); } catch (_) {}
+  }
+})();
+</script></body>
+</html>
